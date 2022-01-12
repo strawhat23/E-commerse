@@ -1,34 +1,34 @@
 <!-- 
   @Author: Your name
-  @Date:   2022-01-06 11:11:50
+  @Date:   2022-01-10 15:55:38
   @Last Modified by:   Your name
-  @Last Modified time: 2022-01-10 17:10:23
+  @Last Modified time: 2022-01-10 17:19:14
 -->
-{% comment %} {% extends 'app/base.html' %}
+{% extends 'app/base.html' %}
 {% load static %}
 {% block title %}Buy Now{% endblock title %}
 {% block main-content %}
-<style>
+{% comment %} <style>
     .main{
     min-height: 73vh;
     }
-</style>
+</style> {% endcomment %}
 <div class="container my-5">
     <div class="main">
         <div class="row">
             <div class="col-sm-3">
                 <div class="list-group">
-                    <a href="{% url 'mobile' %}" class="list-group-item list-group-item-action">All Mobile</a>
-                    <a href="{% url 'mobiledata' 'Realme' %}" class="list-group-item list-group-item-action">Realme</a>
-                    <a href="{% url 'mobiledata' 'Samsung' %}" class="list-group-item list-group-item-action">Samsung</a>
-                    <a href="{% url 'mobiledata' 'Apple' %}" class="list-group-item list-group-item-action">Apple</a>
-                    <a href="{% url 'mobiledata' 'below' %}" class="list-group-item list-group-item-action">Below 10000</a>
-                    <a href="{% url 'mobiledata' 'above' %}" class="list-group-item list-group-item-action">Above 10000</a>
+                    <a href="{% url 'headphone' %}" class="list-group-item list-group-item-action">All Headphone</a>
+                    <a href="{% url 'headphonedata' 'Boat' %}" class="list-group-item list-group-item-action">Boat</a>
+                    <a href="{% url 'headphonedata' 'Boalt' %}" class="list-group-item list-group-item-action">Boalt</a>
+                    <a href="{% url 'headphonedata' 'Infinity' %}" class="list-group-item list-group-item-action">Infinity</a>
+                    <a href="{% url 'headphonedata' 'below' %}" class="list-group-item list-group-item-action">Below 1000</a>
+                    <a href="{% url 'headphonedata' 'above' %}" class="list-group-item list-group-item-action">Above 1000</a>
                 </div>
             </div>
             <div class="col-sm-8">
                 <div class="row">
-                    {% for product in mobiles %}
+                    {% for product in headphones %}
                     <div class="col-sm-4 text-center mb-4">
                         <a href="{% url 'product-detail' product.id %}" class="btn">
                             <div class="item">
@@ -46,4 +46,4 @@
         </div>
     </div>
 </div>
-{% endblock main-content %} {% endcomment %}
+{% endblock main-content %}

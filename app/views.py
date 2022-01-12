@@ -2,10 +2,12 @@
 # @Author: Your name
 # @Date:   2022-01-06 11:11:50
 # @Last Modified by:   Your name
-# @Last Modified time: 2022-01-08 11:08:50
+# @Last Modified time: 2022-01-11 15:10:40
 from django.shortcuts import render
 from django.views import View
 from .models import Customer,Product,Cart,OrderPlaced
+from .forms import CustomerRegistrationForm
+from django.contrib import messages
 
 # def home(request):
 #  return render(request, 'app/home.html')
@@ -46,11 +48,34 @@ def change_password(request):
 def mobile(request):
  return render(request, 'app/mobile.html')
 
+def headphone(request, data=None):
+    if data == None:
+        headphones = Product.objects.filter(category='H')
+    elif data == 'Boat' or data == 'Boalt' or data == 'Infinity':
+        headphones = Product.objects.filter(category='H').filter(brand=data)
+    elif data == 'below':
+        headphones = Product.objects.filter(category='H').filter(discounted_price__lt=1000)
+    elif data == 'above':
+        headphones = Product.objects.filter(category='H').filter(discounted_price__gt=1000) 
+    return render(request,'app/headphone.html',{'headphones':headphones})
+
 def login(request):
  return render(request, 'app/login.html')
 
-def customerregistration(request):
- return render(request, 'app/customerregistration.html')
+# def customerregistration(request):
+#  return render(request, 'app/customerregistration.html')
+
+
+class CustomerRegistrationView(View):
+    def get(self, request):
+        form = CustomerRegistrationForm()
+        return render(request, 'app/customerregistration.html', {'form': form})
+    def post(self, request):
+        form = CustomerRegistrationForm(request.POST)
+        if form.is_valid():
+            messages.success(request, "Registered Successfully")
+            form.save()
+        return render(request, 'app/customerregistration.html', {'form': form})    
 
 def checkout(request):
  return render(request, 'app/checkout.html')

@@ -2,7 +2,7 @@
 # @Author: Your name
 # @Date:   2022-01-06 11:11:50
 # @Last Modified by:   Your name
-# @Last Modified time: 2022-01-08 10:41:10
+# @Last Modified time: 2022-01-11 15:07:30
 from django.urls import path
 from app import views
 from django.conf import settings
@@ -18,7 +18,9 @@ urlpatterns = [
     path('orders/', views.orders, name='orders'),
     path('changepassword/', views.change_password, name='changepassword'),
     path('mobile/', views.mobile, name='mobile'),
+    path('headphone/', views.headphone, name='headphone'),
+    path('headphone/ <slug:data>', views.headphone, name='headphonedata'),
     path('login/', views.login, name='login'),
-    path('registration/', views.customerregistration, name='customerregistration'),
+    path('registration/', views.CustomerRegistrationView.as_view(), name='customerregistration'),
     path('checkout/', views.checkout, name='checkout'),
 ]+ static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
